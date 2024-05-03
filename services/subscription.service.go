@@ -337,8 +337,8 @@ func (subscriptionService *SubscriptionService) CreateCustomerCheckoutSession(us
 	}
 	stripe.Key = os.Getenv("STRIPE_SECRET_KEY")
 	params := &stripe.CheckoutSessionParams{
-		SuccessURL:   stripe.String(os.Getenv("FRONTEND_CUSTOMER_PORTAL_REDIRECT_URL")),
-		CancelURL:    stripe.String(os.Getenv("FRONTEND_CUSTOMER_PORTAL_REDIRECT_URL")),
+		SuccessURL:   stripe.String(os.Getenv("CLIENT_CUSTOMER_PORTAL_REDIRECT_URL")),
+		CancelURL:    stripe.String(os.Getenv("CLIENT_CUSTOMER_PORTAL_REDIRECT_URL")),
 		Mode:         stripe.String(string(stripe.CheckoutSessionModeSubscription)),
 		Customer:     stripe.String(account.StripeCustomerID),
 		AutomaticTax: &stripe.CheckoutSessionAutomaticTaxParams{Enabled: stripe.Bool(true)},
@@ -366,7 +366,7 @@ func (subscriptionService *SubscriptionService) CreateCustomerPortalSession(Acco
 
 	params := &stripe.BillingPortalSessionParams{
 		Customer:  stripe.String(account.StripeCustomerID),
-		ReturnURL: stripe.String(os.Getenv("FRONTEND_CUSTOMER_PORTAL_REDIRECT_URL")),
+		ReturnURL: stripe.String(os.Getenv("CLIENT_CUSTOMER_PORTAL_REDIRECT_URL")),
 	}
 	s, _ := session.New(params)
 	return s.URL, err

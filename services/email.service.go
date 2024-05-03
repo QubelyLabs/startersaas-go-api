@@ -100,7 +100,7 @@ func (emailService *EmailService) SendActiveEmail(q bson.M) (success bool, err e
 	if err != nil {
 		return false, err
 	}
-	frontendLoginURL := os.Getenv("FRONTEND_LOGIN_URL")
+	frontendLoginURL := os.Getenv("CLIENT_LOGIN_URL")
 
 	engine := liquid.NewEngine()
 	emailModel, _ := loadEmail("activate", user.Language)
@@ -118,7 +118,7 @@ func (emailService *EmailService) SendNotificationEmail(email string, subject st
 	engine := liquid.NewEngine()
 
 	emailModel, _ := loadEmail("notification", lang)
-	frontendLoginURL := os.Getenv("FRONTEND_LOGIN_URL")
+	frontendLoginURL := os.Getenv("CLIENT_LOGIN_URL")
 	bindings := map[string]interface{}{
 		"subject":          subject,
 		"email":            email,

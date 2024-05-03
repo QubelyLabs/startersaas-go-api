@@ -2,6 +2,14 @@
 
 This project contains everything you need to setup a fully featured SaaS API in 5 minutes.
 
+# Run
+```bash
+ $ make
+ $ ./listmonk --new-config
+ $ ./listmonk --install
+ $ ./listmonk
+```
+
 # Installation
 
 Copy `.env.example` into `.env` and `stripe.conf.json.example` into `stripe.conf.json`.
@@ -81,7 +89,7 @@ Below the meaning of every environment variable you can setup.
 
 `JWT_EXPIRE=20` # how many days the JWT token last
 
-`FRONTEND_LOGIN_URL="http://localhost:5000/auth/login"` raplace http://localhost:5000 with the real production host of the React frontend
+`CLIENT_LOGIN_URL="http://localhost:5000/auth/login"` replace http://localhost:5000 with the real production host of client
 
 `MAILER_HOST='localhost'` the SMTP server host
 
@@ -109,7 +117,7 @@ Below the meaning of every environment variable you can setup.
 
 `STARTER_PLAN_TYPE="starter"` set the plan to assign by default to a new customer. Must match one of the plans defined in `stripe.conf.json`
 
-`FRONTEND_CUSTOMER_PORTAL_REDIRECT_URL="http://localhost:3010/dashboard"` the URL to forward after actions on Stripe Customer Portal
+`CLIENT_CUSTOMER_PORTAL_REDIRECT_URL="http://localhost:3010/dashboard"` the URL to forward after actions on Stripe Customer Portal
 
 ### Docker variables
 
@@ -146,7 +154,7 @@ Then for every product you want to sell, copy it's price_id (usually starts with
 }
 ```
 
-Then sets its title, its price (in cents, the same you have configured in Stripe) and the list of features you want to show in the frontend pricing table.
+Then sets its title, its price (in cents, the same you have configured in Stripe) and the list of features you want to show in the client pricing table.
 
 Set `"monthly":true` if your plan is billed on monthly basis, otherwise we consider it billed yearly.
 
@@ -154,7 +162,7 @@ Set `"planType"` with your plan code to a more user friendly knowledge of the cu
 
 # Features
 
-### API and Frontend
+### APIs
 
 - [x] user registration of account with subdomain, email and password
 - [x] user email activation with 6 characters code and account creation
@@ -178,9 +186,6 @@ Set `"planType"` with your plan code to a more user friendly knowledge of the cu
 - [x] account's user update (by admins only)
 - [x] account's user delete (by admins only)
 - [x] teams handling
-
-### API only
-
 - [x] stripe webhooks handling
 - events notifications by email:
   - [x] new user subscribed
