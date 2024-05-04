@@ -4,10 +4,7 @@ This project contains everything you need to setup a fully featured SaaS API in 
 
 # Run
 ```bash
- $ make
- $ ./listmonk --new-config
- $ ./listmonk --install
- $ ./listmonk
+ $ go run main.go
 ```
 
 # Installation
